@@ -8,11 +8,12 @@ import 'app/infrastructure/theme/theme.dart';
 void main() {
   runApp(
     GetMaterialApp(
-      title: "Application",
+      title: 'Application',
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       theme: AppTheme.light(),
       darkTheme: AppTheme.dark(),
+      debugShowCheckedModeBanner: false,
     ),
   );
 }

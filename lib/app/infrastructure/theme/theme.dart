@@ -12,6 +12,7 @@ class AppTheme {
   static const Color disneyBlue = Color(0xFF0063E5); // CTA button primary
   static const Color disneyCyanAccent = Color(0xFF02E7C4);
   static const Color disneySilver = Color(0xFFCACACA); // Subtitle/Muted text
+  static const Color yellowCrawl = Color(0xFFFFE81F);
 
   static ColorScheme darkScheme() {
     return const ColorScheme(
