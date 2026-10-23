@@ -3,16 +3,42 @@ import 'package:get/get.dart';
 
 import '../../../domain/entities/film/film_entity.dart';
 import '../../../domain/usecase/get_film_detail_usecase.dart';
+import '../../../domain/usecase/get_people_detail_usecase.dart';
+import '../../../domain/usecase/get_planet_detail_usecase.dart';
+import '../../../domain/usecase/get_species_detail_usecase.dart';
+import '../../../domain/usecase/get_starship_detail_usecase.dart';
+import '../../../domain/usecase/get_vehicle_detail_usecase.dart';
+import '../views/widgets/entity_detail_bottom_sheet.dart';
 
 class FilmDetailController extends GetxController {
   final GetFilmDetailUseCase _getFilmDetailUseCase;
+  final GetPeopleDetailUseCase _getPeopleDetailUseCase;
+  final GetPlanetDetailUseCase _getPlanetDetailUseCase;
+  final GetSpeciesDetailUseCase _getSpeciesDetailUseCase;
+  final GetStarshipDetailUseCase _getStarshipDetailUseCase;
+  final GetVehicleDetailUseCase _getVehicleDetailUseCase;
 
-  FilmDetailController({required GetFilmDetailUseCase getFilmDetailUseCase})
-    : _getFilmDetailUseCase = getFilmDetailUseCase;
+  FilmDetailController({
+    required GetFilmDetailUseCase getFilmDetailUseCase,
+    required GetPeopleDetailUseCase getPeopleDetailUseCase,
+    required GetPlanetDetailUseCase getPlanetDetailUseCase,
+    required GetSpeciesDetailUseCase getSpeciesDetailUseCase,
+    required GetStarshipDetailUseCase getStarshipDetailUseCase,
+    required GetVehicleDetailUseCase getVehicleDetailUseCase,
+  }) : _getFilmDetailUseCase = getFilmDetailUseCase,
+       _getPeopleDetailUseCase = getPeopleDetailUseCase,
+       _getPlanetDetailUseCase = getPlanetDetailUseCase,
+       _getSpeciesDetailUseCase = getSpeciesDetailUseCase,
+       _getStarshipDetailUseCase = getStarshipDetailUseCase,
+       _getVehicleDetailUseCase = getVehicleDetailUseCase;
 
   final film = Rx<FilmEntity?>(null);
   final isLoading = false.obs;
   final errorMessage = ''.obs;
+
+  final selectedEntity = Rx<dynamic>(null);
+  final isEntityLoading = false.obs;
+  final entityError = ''.obs;
 
   @override
   void onInit() {
@@ -64,46 +90,45 @@ class FilmDetailController extends GetxController {
     required String type,
     required String url,
   }) {
+    fetchEntityDetail(type: type, url: url);
+
     Get.bottomSheet(
-      SafeArea(
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Get.theme.scaffoldBackgroundColor,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('$type Detail', style: context.textTheme.titleMedium),
-                  IconButton(
-                    icon: const Icon(Icons.close),
-                    onPressed: () => Get.back(),
-                  ),
-                ],
-              ),
-              const Divider(),
-              const SizedBox(height: 8),
-              Text(
-                'Source URL:',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Get.theme.colorScheme.onSurfaceVariant,
-                ),
-              ),
-              const SizedBox(height: 4),
-              SelectableText(url, style: context.textTheme.bodySmall),
-              const SizedBox(height: 12),
-              const Text('Todo', style: TextStyle(fontSize: 13)),
-              const SizedBox(height: 16),
-            ],
-          ),
-        ),
-      ),
+      EntityDetailBottomSheet(controller: this, entityType: type, url: url),
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
     );
+  }
+
+  Future<void> fetchEntityDetail({
+    required String type,
+    required String url,
+  }) async {
+    isEntityLoading.value = true;
+    entityError.value = '';
+    selectedEntity.value = null;
+
+    final segments = url.split('/').where((s) => s.isNotEmpty).toList();
+    final id = segments.isNotEmpty ? int.tryParse(segments.last) : null;
+
+    if (id == null) {
+      entityError.value = 'ID tidak valid dari URL: $url';
+      isEntityLoading.value = false;
+      return;
+    }
+
+    try {
+      selectedEntity.value = switch (type.toLowerCase()) {
+        'character' || 'people' => await _getPeopleDetailUseCase(id),
+        'planet' => await _getPlanetDetailUseCase(id),
+        'species' => await _getSpeciesDetailUseCase(id),
+        'starship' => await _getStarshipDetailUseCase(id),
+        'vehicle' => await _getVehicleDetailUseCase(id),
+        _ => throw Exception('Tipe entitas "$type" tidak didukung.'),
+      };
+    } catch (e) {
+      entityError.value = e.toString();
+    } finally {
+      isEntityLoading.value = false;
+    }
   }
 }
