@@ -24,7 +24,13 @@ class HomeView extends GetView<HomeController> {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(StringConst.appName, style: context.textTheme.titleLarge),
+            Text(
+              StringConst.appName,
+              style: context.textTheme.displaySmall?.copyWith(
+                color: AppTheme.disneySilver,
+                fontSize: 20,
+              ),
+            ),
             Text(
               'Star Wars Movie Series',
               style: context.textTheme.bodyMedium?.copyWith(
