@@ -13,6 +13,7 @@ void main() {
       getPages: AppPages.routes,
       theme: AppTheme.light(),
       darkTheme: AppTheme.dark(),
+      debugShowCheckedModeBanner: false,
     ),
   );
 }
