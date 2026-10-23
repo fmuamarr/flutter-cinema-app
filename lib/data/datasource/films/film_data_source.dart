@@ -3,4 +3,5 @@ import '../../model/film/film_model.dart';
 
 abstract class FilmDataSource {
   Future<BaseListResponse<List<FilmModel>>> getFilmsList();
+  Future<FilmModel> getFilmDetail(int id);
 }

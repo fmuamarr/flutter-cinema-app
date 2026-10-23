@@ -22,4 +22,14 @@ class FilmDataSourceImpl extends FilmDataSource {
       onResult: (list) => list.map((e) => FilmModel.fromJson(e)).toList(),
     );
   }
+
+  @override
+  Future<FilmModel> getFilmDetail(int id) async {
+    final response = await _apiProvider.call(
+      ApiUrl.filmDetail(id),
+      method: MethodRequest.get,
+    );
+
+    return FilmModel.fromJson(response);
+  }
 }

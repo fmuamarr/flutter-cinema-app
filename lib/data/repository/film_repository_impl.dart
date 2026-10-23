@@ -15,4 +15,11 @@ class FilmRepositoryImpl implements FilmRepository {
     final response = await _filmDataSource.getFilmsList();
     return response.toEntity();
   }
+
+  @override
+  Future<FilmEntity> getFilmDetail(int id) async {
+    final response = await _filmDataSource.getFilmDetail(id);
+    return response.toEntity();
+  }
 }
+
