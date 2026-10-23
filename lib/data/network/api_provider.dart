@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+import '../../app/utils/config.dart';
 import 'log_response.dart';
 
 enum MethodRequest { get, post, put, delete, patch }
@@ -11,23 +12,20 @@ enum MethodRequest { get, post, put, delete, patch }
 class ApiProvider {
   final Dio dio;
 
-  ApiProvider({
-    required String baseUrl,
-    int duration = 60,
-    Map<String, String>? defaultHeaders,
-  }) : dio = Dio(
-         BaseOptions(
-           baseUrl: baseUrl,
-           connectTimeout: Duration(seconds: duration),
-           receiveTimeout: Duration(seconds: duration),
-           headers:
-               defaultHeaders ??
-               {
-                 'Content-Type': 'application/json',
-                 'Accept': 'application/json',
-               },
-         ),
-       ) {
+  ApiProvider({int duration = 60, Map<String, String>? defaultHeaders})
+    : dio = Dio(
+        BaseOptions(
+          baseUrl: Config.baseUrl,
+          connectTimeout: Duration(seconds: duration),
+          receiveTimeout: Duration(seconds: duration),
+          headers:
+              defaultHeaders ??
+              {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+              },
+        ),
+      ) {
     _setupInterceptors();
   }
 

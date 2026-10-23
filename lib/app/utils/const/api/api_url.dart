@@ -1,3 +1,3 @@
 class ApiUrl {
-  static const String endpointsExp = ' ';
+  static const String filmList = '/api/films/';
 }
