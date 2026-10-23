@@ -36,3 +36,5 @@ flutter:
         - asset: assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf
         - asset: assets/fonts/Montserrat/Montserrat-Italic-VariableFont_wght.ttf
           style: italic
+  assets:
+    - assets/images/poster/
