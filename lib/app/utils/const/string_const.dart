@@ -1,5 +1,5 @@
 class StringConst {
-  static const appName = 'Cinema App';
+  static const appName = 'Moviez';
   static const localeIdcode = 'id';
   static const localeEncode = 'en';
   static const langIdCode = 'ID';
@@ -9,4 +9,6 @@ class StringConst {
   static const error = 'Error';
   static const interFont = 'Inter';
   static const montserratFont = 'Montserrat';
+
+  static const String mockDataPath = 'assets/data/cinema-list-mock-data.json';
 }

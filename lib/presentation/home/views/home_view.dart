@@ -44,8 +44,11 @@ class HomeView extends GetView<HomeController> {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh_rounded, color: Colors.white),
-            onPressed: controller.getFilms,
+            icon: const Icon(
+              Icons.location_on_rounded,
+              color: AppTheme.disneyCyanAccent,
+            ),
+            onPressed: () => Get.toNamed(Routes.CINEMA),
           ),
         ],
       ),
