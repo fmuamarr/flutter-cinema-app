@@ -1,0 +1,272 @@
+[
+  {
+    "id": "bdg-01",
+    "name": "CGV Paris Van Java",
+    "city": "Bandung",
+    "chain": "CGV",
+    "address": "Paris van Java Resort Lifestyle Place, Jl. Sukajadi No.137-139, Sukajadi, Kota Bandung",
+    "latitude": -6.8893,
+    "longitude": 107.596
+  },
+  {
+    "id": "bdg-02",
+    "name": "CGV Cinemas • Mall BEC",
+    "city": "Bandung",
+    "chain": "CGV",
+    "address": "Istana BEC 2 Lt. 3A, Jl. Purnawarman No.7–11, Sumur Bandung, Kota Bandung",
+    "latitude": -6.9082,
+    "longitude": 107.6094
+  },
+  {
+    "id": "bdg-03",
+    "name": "CGV - 23 Paskal",
+    "city": "Bandung",
+    "chain": "CGV",
+    "address": "23 Paskal Shopping Centre Lt. 3, Jl. Pasir Kaliki No.25-27, Andir, Kota Bandung",
+    "latitude": -6.9157,
+    "longitude": 107.5956
+  },
+  {
+    "id": "bdg-04",
+    "name": "CGV Cinemas • Miko Mall",
+    "city": "Bandung",
+    "chain": "CGV",
+    "address": "MIKO MALL Lt. 3A, Jl. Raya Kopo No.599, Babakan Ciparay, Kota Bandung",
+    "latitude": -6.9587,
+    "longitude": 107.5756
+  },
+  {
+    "id": "bdg-05",
+    "name": "CGV Metro Indah Mall",
+    "city": "Bandung",
+    "chain": "CGV",
+    "address": "MIM SF Lt. 2, Jl. Soekarno-Hatta No.590, Sekejati, Buahbatu, Kota Bandung",
+    "latitude": -6.9422,
+    "longitude": 107.6534
+  },
+  {
+    "id": "bdg-06",
+    "name": "Ciwalk XXI",
+    "city": "Bandung",
+    "chain": "Cinema XXI",
+    "address": "Cihampelas Walk, Jl. Cihampelas No.160, Coblong, Kota Bandung",
+    "latitude": -6.8943,
+    "longitude": 107.6046
+  },
+  {
+    "id": "bdg-07",
+    "name": "TSM XXI",
+    "city": "Bandung",
+    "chain": "Cinema XXI",
+    "address": "Trans Studio Mall, Jl. Gatot Subroto No.289, Cibangkong, Batununggal, Kota Bandung",
+    "latitude": -6.9254,
+    "longitude": 107.6366
+  },
+  {
+    "id": "bdg-08",
+    "name": "Braga XXI",
+    "city": "Bandung",
+    "chain": "Cinema XXI",
+    "address": "Braga CityWalk, Jl. Braga No.99-101, Sumur Bandung, Kota Bandung",
+    "latitude": -6.9174,
+    "longitude": 107.6096
+  },
+  {
+    "id": "bdg-09",
+    "name": "Festival Citylink XXI",
+    "city": "Bandung",
+    "chain": "Cinema XXI",
+    "address": "Mall Festival Citylink, Jl. Peta No.241, Bojongloa Kaler, Kota Bandung",
+    "latitude": -6.9329,
+    "longitude": 107.5888
+  },
+  {
+    "id": "bdg-10",
+    "name": "D'Botanica XXI",
+    "city": "Bandung",
+    "chain": "Cinema XXI",
+    "address": "D'Botanica Mall, Jl. Dr. Djunjunan No.143-149, Cicendo, Kota Bandung",
+    "latitude": -6.8953,
+    "longitude": 107.5794
+  },
+  {
+    "id": "jkt-01",
+    "name": "CGV Grand Indonesia",
+    "city": "Jakarta",
+    "chain": "CGV",
+    "address": "Grand Indonesia West Mall Lt. 8, Jl. M.H. Thamrin No.1, Tanah Abang, Jakarta Pusat",
+    "latitude": -6.1956,
+    "longitude": 106.8202
+  },
+  {
+    "id": "jkt-02",
+    "name": "CGV Central Park",
+    "city": "Jakarta",
+    "chain": "CGV",
+    "address": "Central Park Mall, Jl. Letjen S. Parman No.28, Grogol Petamburan, Jakarta Barat",
+    "latitude": -6.1775,
+    "longitude": 106.7907
+  },
+  {
+    "id": "jkt-03",
+    "name": "CGV Pacific Place",
+    "city": "Jakarta",
+    "chain": "CGV",
+    "address": "One Pacific Place Mall Lt. 6, Jl. Jend. Sudirman Kav 52-53, Kebayoran Baru, Jakarta Selatan",
+    "latitude": -6.2244,
+    "longitude": 106.8099
+  },
+  {
+    "id": "jkt-04",
+    "name": "CGV Cinemas FX Sudirman",
+    "city": "Jakarta",
+    "chain": "CGV",
+    "address": "fX Sudirman Lt. 7, Jl. Jenderal Sudirman, Tanah Abang, Jakarta Pusat",
+    "latitude": -6.2249,
+    "longitude": 106.8041
+  },
+  {
+    "id": "jkt-05",
+    "name": "CGV Cinemas Aeon Mall JGC",
+    "city": "Jakarta",
+    "chain": "CGV",
+    "address": "AEON Mall JGC, Jl. Jakarta Garden City Boulevard, Cakung, Jakarta Timur",
+    "latitude": -6.1706,
+    "longitude": 106.9538
+  },
+  {
+    "id": "jkt-06",
+    "name": "Epicentrum XXI",
+    "city": "Jakarta",
+    "chain": "Cinema XXI",
+    "address": "Komplek Rasuna Epicentrum, Jl. H. R. Rasuna Said, Setiabudi, Jakarta Selatan",
+    "latitude": -6.2173,
+    "longitude": 106.8335
+  },
+  {
+    "id": "jkt-07",
+    "name": "Kota Kasablanka XXI",
+    "city": "Jakarta",
+    "chain": "Cinema XXI",
+    "address": "Mall Kota Kasablanka, Jl. Raya Casablanca No.88, Tebet, Jakarta Selatan",
+    "latitude": -6.2238,
+    "longitude": 106.8436
+  },
+  {
+    "id": "jkt-08",
+    "name": "Plaza Indonesia XXI",
+    "city": "Jakarta",
+    "chain": "Cinema XXI",
+    "address": "Plaza Indonesia Lt. 6, Jl. M.H. Thamrin No.28-30, Menteng, Jakarta Pusat",
+    "latitude": -6.1929,
+    "longitude": 106.8228
+  },
+  {
+    "id": "jkt-09",
+    "name": "Metropole XXI",
+    "city": "Jakarta",
+    "chain": "Cinema XXI",
+    "address": "Komplek Megaria, Jl. Pegangsaan Timur No.21, Menteng, Jakarta Pusat",
+    "latitude": -6.1994,
+    "longitude": 106.8437
+  },
+  {
+    "id": "jkt-10",
+    "name": "Djakarta Theater XXI",
+    "city": "Jakarta",
+    "chain": "Cinema XXI",
+    "address": "Jl. M.H. Thamrin No.9, Menteng, Jakarta Pusat",
+    "latitude": -6.1868,
+    "longitude": 106.8242
+  },
+  {
+    "id": "sby-01",
+    "name": "Tunjungan Plaza 1 XXI",
+    "city": "Surabaya",
+    "chain": "Cinema XXI",
+    "address": "Tunjungan Plaza 1 Lt. 5, Jl. Basuki Rahmat No.8-12, Tegalsari, Surabaya",
+    "latitude": -7.2618,
+    "longitude": 112.7405
+  },
+  {
+    "id": "sby-02",
+    "name": "Pakuwon Mall IMAX & Premiere XXI",
+    "city": "Surabaya",
+    "chain": "Cinema XXI",
+    "address": "Pakuwon Mall Lt. 2, Jl. Puncak Indah Lontar II No.2, Wiyung, Surabaya",
+    "latitude": -7.2891,
+    "longitude": 112.6756
+  },
+  {
+    "id": "sby-03",
+    "name": "Grand City XXI",
+    "city": "Surabaya",
+    "chain": "Cinema XXI",
+    "address": "Grand City Mall Lt. 4, Jl. Walikota Mustajab No.1, Genteng, Surabaya",
+    "latitude": -7.2604,
+    "longitude": 112.7507
+  },
+  {
+    "id": "sby-04",
+    "name": "Ciputra World XXI",
+    "city": "Surabaya",
+    "chain": "Cinema XXI",
+    "address": "Ciputra World Mall Lt. 4, Jl. Mayjen Sungkono No.89, Dukuhpakis, Surabaya",
+    "latitude": -7.2917,
+    "longitude": 112.7169
+  },
+  {
+    "id": "sby-05",
+    "name": "Galaxy XXI",
+    "city": "Surabaya",
+    "chain": "Cinema XXI",
+    "address": "Galaxy Mall 1, Jl. Dr. Ir. H. Soekarno No.35-39, Mulyorejo, Surabaya",
+    "latitude": -7.2743,
+    "longitude": 112.7816
+  },
+  {
+    "id": "sby-06",
+    "name": "Pakuwon City XXI",
+    "city": "Surabaya",
+    "chain": "Cinema XXI",
+    "address": "Pakuwon City Mall, Jl. Raya Laguna KJW Putih Tambak No.17, Mulyorejo, Surabaya",
+    "latitude": -7.2736,
+    "longitude": 112.8028
+  },
+  {
+    "id": "sby-07",
+    "name": "Delta XXI",
+    "city": "Surabaya",
+    "chain": "Cinema XXI",
+    "address": "Plaza Surabaya Lt. 5, Jl. Pemuda No.31-37, Genteng, Surabaya",
+    "latitude": -7.2657,
+    "longitude": 112.7483
+  },
+  {
+    "id": "sby-08",
+    "name": "CGV Cinemas Marvell City",
+    "city": "Surabaya",
+    "chain": "CGV",
+    "address": "Marvell City Mall Lt. 2, Jl. Ngagel No.123, Wonokromo, Surabaya",
+    "latitude": -7.2952,
+    "longitude": 112.7471
+  },
+  {
+    "id": "sby-09",
+    "name": "CGV BG Junction",
+    "city": "Surabaya",
+    "chain": "CGV",
+    "address": "BG Junction Lt. 9, Jl. Bubutan No.1-7, Bubutan, Surabaya",
+    "latitude": -7.2562,
+    "longitude": 112.7358
+  },
+  {
+    "id": "sby-10",
+    "name": "CGV Maspion Square",
+    "city": "Surabaya",
+    "chain": "CGV",
+    "address": "Maspion Square Lt. 1, Jl. Ahmad Yani No.73, Wonocolo, Surabaya",
+    "latitude": -7.3175,
+    "longitude": 112.7344
+  }
+]
