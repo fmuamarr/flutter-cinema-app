@@ -43,3 +43,9 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Secrets and Environment Configs
+**/local.properties
+!**/local.properties.example
+**/Flutter/Keys.xcconfig
+!**/Flutter/Keys.xcconfig.example
