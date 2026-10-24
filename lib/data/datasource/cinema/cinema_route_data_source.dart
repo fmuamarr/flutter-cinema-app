@@ -70,6 +70,7 @@ class CinemaRouteDataSourceImpl implements CinemaRouteDataSource {
       }
     } catch (_) {}
 
+    //straight line for >30k
     final straightDistance = Geolocator.distanceBetween(
       originLat,
       originLng,
