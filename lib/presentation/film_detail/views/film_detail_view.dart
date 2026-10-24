@@ -7,6 +7,10 @@ import '../../../app/utils/const/borderradius_const.dart';
 import '../../../app/utils/film_poster_helper.dart';
 import '../../../app/utils/utility/episode_to_roman.dart';
 import '../../../domain/entities/film/film_entity.dart';
+import '../../reminder/controllers/reminder_controller.dart';
+import '../../reminder/models/movie_reminder.dart';
+import '../../reminder/views/widgets/reminder_list_bottom_sheet.dart';
+import '../../reminder/views/widgets/set_reminder_bottom_sheet.dart';
 import '../controllers/film_detail_controller.dart';
 
 class FilmDetailView extends GetView<FilmDetailController> {
@@ -24,6 +28,24 @@ class FilmDetailView extends GetView<FilmDetailController> {
             fontSize: 20,
           ),
         ),
+        actions: [
+          if (Get.isRegistered<ReminderController>())
+            IconButton(
+              icon: const Icon(
+                Icons.notifications_none_rounded,
+                color: AppTheme.disneyCyanAccent,
+              ),
+              tooltip: 'Daftar Reminder',
+              onPressed: () {
+                final reminderCtrl = Get.find<ReminderController>();
+                Get.bottomSheet(
+                  ReminderListBottomSheet(controller: reminderCtrl),
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                );
+              },
+            ),
+        ],
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
@@ -74,28 +96,7 @@ class FilmDetailView extends GetView<FilmDetailController> {
                   children: [
                     _buildMetaSection(film),
                     const SizedBox(height: 16),
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton.icon(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppTheme.disneyBlue,
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderradiusConst.radiusAllSmall,
-                          ),
-                        ),
-                        icon: const Icon(Icons.location_on_rounded, size: 18),
-                        label: Text(
-                          'Find Cinema',
-                          style: context.textTheme.labelMedium?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                          ),
-                        ),
-                        onPressed: () => Get.toNamed(Routes.CINEMA),
-                      ),
-                    ),
+                    _buildActionButtons(context, film),
                     const SizedBox(height: 20),
                     _buildOpeningCrawl(context, film),
                     const SizedBox(height: 24),
@@ -386,5 +387,194 @@ class FilmDetailView extends GetView<FilmDetailController> {
   String _extractId(String url) {
     final segments = url.split('/').where((s) => s.isNotEmpty).toList();
     return segments.isNotEmpty ? segments.last : '';
+  }
+
+  Widget _buildFindCinemaButton(BuildContext context) {
+    return ElevatedButton.icon(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppTheme.disneyBlue,
+        foregroundColor: Colors.white,
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderradiusConst.radiusAllSmall,
+        ),
+      ),
+      icon: const Icon(Icons.location_on_rounded, size: 18),
+      label: Text(
+        'Find Cinema',
+        style: context.textTheme.labelMedium?.copyWith(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          fontSize: 14,
+        ),
+      ),
+      onPressed: () => Get.toNamed(Routes.CINEMA),
+    );
+  }
+
+  Widget _buildActionButtons(BuildContext context, FilmEntity film) {
+    if (!Get.isRegistered<ReminderController>()) {
+      return SizedBox(
+        width: double.infinity,
+        child: _buildFindCinemaButton(context),
+      );
+    }
+
+    final reminderCtrl = Get.find<ReminderController>();
+
+    return Obx(() {
+      final activeReminder = reminderCtrl.currentFilmReminder.value;
+
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: _buildFindCinemaButton(context),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: activeReminder != null
+                        ? AppTheme.disneyCardSurface
+                        : AppTheme.disneyElevated,
+                    foregroundColor: activeReminder != null
+                        ? AppTheme.disneyCyanAccent
+                        : Colors.white,
+                    side: activeReminder != null
+                        ? const BorderSide(
+                            color: AppTheme.disneyCyanAccent,
+                            width: 1.2,
+                          )
+                        : const BorderSide(color: Colors.white12),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderradiusConst.radiusAllSmall,
+                    ),
+                  ),
+                  icon: Icon(
+                    activeReminder != null
+                        ? Icons.notifications_active_rounded
+                        : Icons.alarm_add_rounded,
+                    size: 18,
+                    color: activeReminder != null
+                        ? AppTheme.disneyCyanAccent
+                        : Colors.white,
+                  ),
+                  label: Text(
+                    activeReminder != null ? 'Reminder Set' : 'Set Reminder',
+                    style: context.textTheme.labelMedium?.copyWith(
+                      color: activeReminder != null
+                          ? AppTheme.disneyCyanAccent
+                          : Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
+                  onPressed: () {
+                    Get.bottomSheet(
+                      SetReminderBottomSheet(
+                        film: film,
+                        controller: reminderCtrl,
+                        existingReminder: activeReminder,
+                      ),
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+          if (activeReminder != null) ...[
+            const SizedBox(height: 10),
+            _buildActiveReminderCard(
+              context,
+              film,
+              activeReminder,
+              reminderCtrl,
+            ),
+          ],
+        ],
+      );
+    });
+  }
+
+  Widget _buildActiveReminderCard(
+    BuildContext context,
+    FilmEntity film,
+    MovieReminder reminder,
+    ReminderController reminderCtrl,
+  ) {
+    final day = reminder.showTime.day.toString().padLeft(2, '0');
+    final month = reminder.showTime.month.toString().padLeft(2, '0');
+    final year = reminder.showTime.year;
+    final hour = reminder.showTime.hour.toString().padLeft(2, '0');
+    final minute = reminder.showTime.minute.toString().padLeft(2, '0');
+    final formattedTime = '$day/$month/$year $hour:$minute';
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      decoration: BoxDecoration(
+        color: AppTheme.disneyCardSurface,
+        borderRadius: BorderradiusConst.radiusAllSmall,
+        border: Border.all(
+          color: AppTheme.disneyCyanAccent.withValues(alpha: 0.3),
+        ),
+      ),
+      child: Row(
+        children: [
+          const Icon(
+            Icons.alarm_on_rounded,
+            color: AppTheme.disneyCyanAccent,
+            size: 20,
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Pengingat Tayang Aktif',
+                  style: context.textTheme.labelSmall?.copyWith(
+                    color: AppTheme.disneyCyanAccent,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  'Tayang: $formattedTime',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          IconButton(
+            icon: const Icon(
+              Icons.edit_calendar_rounded,
+              size: 18,
+              color: AppTheme.disneySilver,
+            ),
+            tooltip: 'Ubah Jadwal',
+            onPressed: () {
+              Get.bottomSheet(
+                SetReminderBottomSheet(
+                  film: film,
+                  controller: reminderCtrl,
+                  existingReminder: reminder,
+                ),
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+              );
+            },
+          ),
+        ],
+      ),
+    );
   }
 }
