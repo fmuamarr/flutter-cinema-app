@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../app/infrastructure/routes/app_pages.dart';
 import '../../../app/infrastructure/theme/theme.dart';
 import '../../../app/utils/const/borderradius_const.dart';
 import '../../../app/utils/film_poster_helper.dart';
@@ -72,6 +73,29 @@ class FilmDetailView extends GetView<FilmDetailController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildMetaSection(film),
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppTheme.disneyBlue,
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderradiusConst.radiusAllSmall,
+                          ),
+                        ),
+                        icon: const Icon(Icons.location_on_rounded, size: 18),
+                        label: Text(
+                          'Find Cinema',
+                          style: context.textTheme.labelMedium?.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
+                        ),
+                        onPressed: () => Get.toNamed(Routes.CINEMA),
+                      ),
+                    ),
                     const SizedBox(height: 20),
                     _buildOpeningCrawl(context, film),
                     const SizedBox(height: 24),

@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../../../presentation/cinema/bindings/cinema_binding.dart';
+import '../../../presentation/cinema/views/cinema_view.dart';
 import '../../../presentation/film_detail/bindings/film_detail_binding.dart';
 import '../../../presentation/film_detail/views/film_detail_view.dart';
 import '../../../presentation/home/bindings/home_binding.dart';
@@ -22,6 +24,11 @@ class AppPages {
       name: _Paths.FILM_DETAIL,
       page: () => const FilmDetailView(),
       binding: FilmDetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.CINEMA,
+      page: () => const CinemaView(),
+      binding: CinemaBinding(),
     ),
   ];
 }
