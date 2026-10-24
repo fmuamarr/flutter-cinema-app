@@ -31,11 +31,14 @@ import '../../../domain/usecase/get_planet_detail_usecase.dart';
 import '../../../domain/usecase/get_species_detail_usecase.dart';
 import '../../../domain/usecase/get_starship_detail_usecase.dart';
 import '../../../domain/usecase/get_vehicle_detail_usecase.dart';
+import '../../reminder/bindings/reminder_binding.dart';
 import '../controllers/film_detail_controller.dart';
 
 class FilmDetailBinding extends Bindings {
   @override
   void dependencies() {
+    ReminderBinding().dependencies();
+
     if (!Get.isRegistered<ApiProvider>()) {
       Get.lazyPut<ApiProvider>(() => ApiProvider());
     }

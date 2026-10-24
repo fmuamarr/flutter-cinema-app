@@ -8,6 +8,8 @@ import '../../../app/utils/const/string_const.dart';
 import '../../../app/utils/film_poster_helper.dart';
 import '../../../app/utils/utility/episode_to_roman.dart';
 import '../../../domain/entities/film/film_entity.dart';
+import '../../reminder/controllers/reminder_controller.dart';
+import '../../reminder/views/widgets/reminder_list_bottom_sheet.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -43,11 +45,61 @@ class HomeView extends GetView<HomeController> {
           ],
         ),
         actions: [
+          if (Get.isRegistered<ReminderController>())
+            Obx(() {
+              final reminderCtrl = Get.find<ReminderController>();
+              final count = reminderCtrl.reminders.length;
+              return Stack(
+                alignment: Alignment.center,
+                children: [
+                  IconButton(
+                    icon: const Icon(
+                      Icons.notifications_outlined,
+                      color: AppTheme.disneyCyanAccent,
+                    ),
+                    tooltip: 'Movie Reminders',
+                    onPressed: () {
+                      Get.bottomSheet(
+                        ReminderListBottomSheet(controller: reminderCtrl),
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                      );
+                    },
+                  ),
+                  if (count > 0)
+                    Positioned(
+                      top: 10,
+                      right: 10,
+                      child: Container(
+                        padding: const EdgeInsets.all(3),
+                        decoration: const BoxDecoration(
+                          color: AppTheme.disneyBlue,
+                          shape: BoxShape.circle,
+                        ),
+                        constraints: const BoxConstraints(
+                          minWidth: 14,
+                          minHeight: 14,
+                        ),
+                        child: Text(
+                          '$count',
+                          textAlign: TextAlign.center,
+                          style: context.textTheme.bodySmall?.copyWith(
+                            color: Colors.white,
+                            fontSize: 9,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              );
+            }),
           IconButton(
             icon: const Icon(
               Icons.location_on_rounded,
               color: AppTheme.disneyCyanAccent,
             ),
+            tooltip: 'Cinemas',
             onPressed: () => Get.toNamed(Routes.CINEMA),
           ),
         ],

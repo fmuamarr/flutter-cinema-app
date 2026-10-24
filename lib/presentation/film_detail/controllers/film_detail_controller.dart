@@ -8,6 +8,7 @@ import '../../../domain/usecase/get_planet_detail_usecase.dart';
 import '../../../domain/usecase/get_species_detail_usecase.dart';
 import '../../../domain/usecase/get_starship_detail_usecase.dart';
 import '../../../domain/usecase/get_vehicle_detail_usecase.dart';
+import '../../reminder/controllers/reminder_controller.dart';
 import '../views/widgets/entity_detail_bottom_sheet.dart';
 
 class FilmDetailController extends GetxController {
@@ -43,6 +44,13 @@ class FilmDetailController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
+    ever(film, (FilmEntity? f) {
+      if (f?.episodeId != null && Get.isRegistered<ReminderController>()) {
+        Get.find<ReminderController>().loadFilmReminder(f!.episodeId!);
+      }
+    });
+
     final args = Get.arguments;
     if (args is FilmEntity) {
       film.value = args;
