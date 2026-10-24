@@ -9,4 +9,6 @@ class StringConst {
   static const error = 'Error';
   static const interFont = 'Inter';
   static const montserratFont = 'Montserrat';
+
+  static const String mockDataPath = 'assets/data/cinema-list-mock-data.json';
 }
