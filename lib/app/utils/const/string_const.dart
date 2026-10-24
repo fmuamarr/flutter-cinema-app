@@ -1,5 +1,5 @@
 class StringConst {
-  static const appName = 'Cinema App';
+  static const appName = 'Moviez';
   static const localeIdcode = 'id';
   static const localeEncode = 'en';
   static const langIdCode = 'ID';
